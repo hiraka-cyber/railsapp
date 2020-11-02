@@ -1,0 +1,37 @@
+<%= form_with scope: :post, url: posts_path, local: true do |form| %>
+  <% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+      this post from being saved:</h2>
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title,class:'form-control' %>
+  </p>
+
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text,class:'form-control' %>
+  </p>
+
+  <p>
+  <%= form.label :category_id, 'カテゴリー'%><br>
+  <%= form.collection_select :category_id, Category.all, :id, :name, :include_blank => "カテゴリを選択してください" ,class:'form-control'%><br>
+  </p>
+
+  <p>
+  <%= form.label :image %><br>
+  <%= form.file_field :image %>
+  </p>
+
+  <p>
+    <%= form.submit 'Submit',class:'btn btn-outline-primary mt-2'%>
+  </p>
+<% end %>

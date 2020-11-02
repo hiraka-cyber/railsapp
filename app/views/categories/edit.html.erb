@@ -1,0 +1,6 @@
+<h1>Categories#edit</h1>
+<%= form_with model: @category, local: true do |form| %>
+
+<%= form.label :Category%><br>
+<%= form.text_field :name, class:'form-control'%>
+<%= form.submit '保存', class: 'btn btn-primary'%>
